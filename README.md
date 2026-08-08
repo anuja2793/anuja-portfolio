@@ -3,7 +3,7 @@
 
 A personal portfolio website built to showcase my web development skills and projects to prospective clients and employers.
 
-🔗 **Live Site:** 
+🔗 **Live Site:** https://anuja2793.github.io/anuja-portfolio/
 🔗 **Repo:** https://github.com/anuja2793/anuja-portfolio
 
 https://github.com/user-attachments/assets/a944b7cf-78ae-47fa-b5e1-23801e9a041a

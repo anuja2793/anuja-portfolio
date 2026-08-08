@@ -1,3 +1,4 @@
+
 # Anuja Chavan — Portfolio Website
 
 A personal portfolio website built to showcase my web development skills and projects to prospective clients and employers.
@@ -5,6 +6,7 @@ A personal portfolio website built to showcase my web development skills and pro
 🔗 **Live Site:** 
 🔗 **Repo:** https://github.com/anuja2793/anuja-portfolio
 
+https://github.com/user-attachments/assets/a944b7cf-78ae-47fa-b5e1-23801e9a041a
 ## About
 
 I'm a full-time PHP/Laravel web developer, currently building a freelance web development practice alongside my job — focused on helping small local businesses get a strong online presence.

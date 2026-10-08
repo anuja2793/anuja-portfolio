@@ -547,8 +547,91 @@ footer .copy span{color:var(--primary);}
   .contact-row .ic{width:38px; height:38px; font-size:14px;}
 
   #backToTop{width:42px; height:42px; bottom:18px; right:18px;}
+}/* ===== FIXES: overflow + wide-screen consistency ===== */
+
+/* 1. Marquee ab page ko wide nahi karega */
+.marquee-wrap{overflow:hidden; width:100%;}
+
+/* 2. Mobile par bhi horizontal scroll band */
+html{overflow-x:hidden;}
+body{overflow-x:hidden; max-width:100%;}
+@supports (overflow:clip){
+  html,body{overflow-x:clip;}
 }
+
+/* 3. Hero ke floating chips bahar nahi nikalenge */
+.hero{overflow:hidden;}
+
+/* 4. Wide screen / zoom-out par sab sections same width mein rahenge */
+@media (min-width:769px){
+  section, nav, nav.scrolled{
+    padding-left:max(6vw, calc((100% - var(--maxw)) / 2));
+    padding-right:max(6vw, calc((100% - var(--maxw)) / 2));
+  }
+}/* ===== DESKTOP / ZOOM-OUT FIXES ===== */
+
+/* 1. Wide screen par content thoda bada */
+:root{ --maxw:1400px; }
+
+/* 2. Hero ki height cap, ab khali gap nahi banega */
+@media (min-width:981px){
+  .hero{
+    min-height:min(100vh, 880px);
+    padding-top:120px;
+    padding-bottom:70px;
+  }
+}
+
+/* 3. Bahut wide screen (zoom-out 50% ya kam) par hero visual aur text balanced */
+@media (min-width:1800px){
+  .hero h1{font-size:88px;}
+  .hero-sub{font-size:17px; max-width:560px;}
+  .hero-photo-frame{width:400px;}
+}/* ===== ULTRA-WIDE / ZOOM-OUT POLISH ===== */
+
+/* 2. Marquee ke edges fade, ab cut-off wala look nahi aayega */
+.marquee-wrap{
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  padding:10px 0;
+}
+
+/* 3. Hero ke neeche ka gap kam */
+@media (min-width:981px){
+  .hero{ min-height:auto; padding-bottom:90px; }
+  .scroll-cue{ display:none; }
+}
+.scroll-cue{display:none !important;}
+@media (min-width:1700px){ :root{ --maxw:1600px; } body{ zoom:1.15; } }
+@media (min-width:2200px){ body{ zoom:1.35; } }
+
 </style>
+<link rel="canonical" href="https://YOUR-DOMAIN/">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta property="og:image" content="https://YOUR-DOMAIN/assets/anuja-hero.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anuja Chavan — PHP Laravel Full Stack Developer">
+<meta name="twitter:description" content="PHP Laravel developer building scalable web applications. Open to full-time, freelance and internship work.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN/assets/anuja-hero.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Anuja Chavan",
+  "jobTitle": "PHP Laravel Full Stack Developer",
+  "email": "mailto:anujachavan62@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Navi Mumbai", "addressCountry": "IN" },
+  "sameAs": [
+    "https://github.com/anuja2793",
+    "https://www.linkedin.com/in/anuja-chavan27/",
+    "https://www.instagram.com/anuja_2793/"
+  ],
+  "knowsAbout": ["PHP", "Laravel", "MySQL", "JavaScript", "CodeIgniter"]
+}
+</script>
 </head>
 <body>
 
@@ -1410,6 +1493,17 @@ function closeMenu(){ mobileMenu.classList.remove('open'); menuOverlay.classList
 hamburger.addEventListener('click', ()=>{ mobileMenu.classList.add('open'); menuOverlay.classList.add('open'); });
 menuOverlay.addEventListener('click', closeMenu);
 mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+/* Marquee: fill any screen width (zoom-out safe) */
+window.addEventListener('load', () => {
+  const m = document.querySelector('.marquee');
+  if (!m) return;
+  const unit = m.querySelector('span').outerHTML;
+  m.innerHTML = unit + unit;
+  while (m.scrollWidth < window.innerWidth * 2) {
+    m.insertAdjacentHTML('beforeend', unit + unit); // always add in pairs
+  }
+});
 </script>
 </body>
 </html>

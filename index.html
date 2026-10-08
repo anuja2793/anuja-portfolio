@@ -604,7 +604,30 @@ body{overflow-x:hidden; max-width:100%;}
 .scroll-cue{display:none !important;}
 @media (min-width:1700px){ :root{ --maxw:1600px; } body{ zoom:1.15; } }
 @media (min-width:2200px){ body{ zoom:1.35; } }
+@media (max-width: 768px) {
+  /* Less empty space at top */
+  .hero { min-height: auto; padding: 100px 20px 40px; }
 
+  /* Readable description */
+  .hero p { font-size: 16px; line-height: 1.6; color: #c5cbe0; }
+
+  /* Bigger tap-friendly button */
+  .hero .btn { padding: 14px 28px; font-size: 16px; }
+
+  /* Hide floating cards that get cut off */
+  .floating-card, .floating-icon { display: none; }
+
+  /* Soft fade at the bottom of the photo */
+  .hero img {
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
+    mask-image: linear-gradient(to bottom, #000 80%, transparent);
+  }
+
+  /* Hide the nav links, show a hamburger instead */
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: #0b1020; padding: 20px; }
+  .menu-toggle { display: block; }
+}
 </style>
 <link rel="canonical" href="https://YOUR-DOMAIN/">
 <meta property="og:url" content="https://YOUR-DOMAIN/">
@@ -682,7 +705,7 @@ body{overflow-x:hidden; max-width:100%;}
   <a href="#gallery">Gallery</a>
   <a href="#testimonials">Testimonials</a>
   <a href="#contact">Contact</a>
-  <a href="assets/Anuja_Chavan_Resume.pdf" download style="color:var(--primary)">Download Resume ↓</a>
+
 </div>
 
 <main id="main">

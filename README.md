@@ -38,6 +38,7 @@ anuja-portfolio/
 
 - **GitHub:** [github.com/anuja2793](https://github.com/anuja2793)
 - **LinkedIn:** [linkedin.com/in/anuja-chavan27](https://linkedin.com/in/anuja-chavan27/)
+- **live website:** https://anuja-portfolio-zeta.vercel.app/
 
 ---
 

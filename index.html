@@ -255,12 +255,12 @@ html[data-theme="light"] .hero-photo-frame img{filter:drop-shadow(0 24px 40px rg
 .ring-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-bottom:54px;}
 .ring-card{padding:26px 16px; border-radius:var(--radius-md); text-align:center; transition:transform .3s,border-color .3s;}
 .ring-card:hover{transform:translateY(-6px); border-color:var(--accent);}
-.ring-svg{width:104px;height:104px; margin:0 auto 12px;}
+.ring-svg{width:100%;height:100%;display:block;}
 .ring-svg circle{fill:none; stroke-width:7;}
 .ring-bg{stroke:var(--surface-strong);}
 .ring-fg{stroke:url(#ringGrad); stroke-linecap:round; stroke-dasharray:283; stroke-dashoffset:283; transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1);}
-.ring-label-wrap{position:relative;}
-.ring-pct{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:19px; top:-104px;}
+.ring-label-wrap{position:relative; width:104px; height:104px; margin:0 auto 12px;}
+.ring-pct{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; font-size:19px; line-height:1;}
 .ring-card h4{font-family:'Space Grotesk'; font-size:14px; margin-top:4px;}
 .skill-cat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:26px;}
 .skill-cat{padding:30px; border-radius:var(--radius-lg);}
@@ -471,8 +471,8 @@ html{font-size:15px;}
 .fun-grid{gap:10px;}
 .fun-card{padding:16px 10px;}
 .ring-strip{gap:14px;}
-.ring-svg{width:84px; height:84px;}
-.ring-pct{top:-84px; font-size:16px;}
+.ring-label-wrap{width:84px; height:84px;}
+.ring-pct{font-size:16px;}
 .skill-cat{padding:22px;}
 .proj-body{padding:20px;}
 .proj-actions a,.proj-actions button{font-size:11.5px; padding:9px 13px;}
@@ -489,6 +489,41 @@ html{font-size:15px;}
 .contact-row{padding:13px 0; gap:12px;}
 .contact-row .ic{width:38px; height:38px; font-size:14px;}
 #backToTop{width:42px; height:42px; bottom:18px; right:18px;}
+</style>
+
+<!-- =====================================================================
+     NEW: WhatsApp button, floating icon and contact form styles
+     (kept AFTER the responsive blocks so these rules win the cascade)
+     ===================================================================== -->
+<style>
+/* WhatsApp button + floating icon */
+.btn-wa{background:#25D366; color:#fff; box-shadow:0 12px 30px -8px rgba(37,211,102,.55);}
+.btn-wa:hover{transform:translateY(-3px); box-shadow:0 18px 40px -8px rgba(37,211,102,.7);}
+.btn-wa i{font-size:17px;}
+#waFloat{position:fixed; bottom:26px; right:27px; width:46px; height:46px; border-radius:50%; background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; z-index:410; animation:waPulse 2.2s infinite;}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55);}70%{box-shadow:0 0 0 18px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+#backToTop{bottom:84px;}
+@media (max-width:520px){
+  #waFloat{width:42px; height:42px; font-size:22px; bottom:18px; right:18px;}
+  #backToTop{bottom:70px;}
+}
+
+/* Contact form */
+.form-card h3{font-size:22px; margin-bottom:6px;}
+.form-card .fsub{color:var(--text-dim); font-size:13.5px; margin-bottom:22px;}
+.f-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.f-group{margin-bottom:14px; display:flex; flex-direction:column; gap:6px;}
+.f-group label{font-size:12.5px; font-weight:500;}
+.f-group input,.f-group select,.f-group textarea{width:100%; padding:13px 15px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); font:inherit; font-size:16px; cursor:auto; outline:none; transition:border-color .25s, box-shadow .25s;}
+.f-group select option{color:#0F172A; background:#fff;}
+.f-group textarea{min-height:110px; resize:vertical;}
+.f-group input:focus,.f-group select:focus,.f-group textarea:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,229,255,.15);}
+.f-err{display:none; color:#ff7b7b; font-size:11.5px;}
+.f-group.err .f-err{display:block;}
+.f-group.err input,.f-group.err textarea{border-color:#ff5d5d;}
+.form-card .btn{width:100%; justify-content:center; margin-top:6px; border:none;}
+.form-note{font-size:12px; color:var(--text-dim); margin-top:12px; text-align:center;}
+@media (max-width:520px){ .f-row{grid-template-columns:1fr; gap:0;} }
 </style>
 
 <link rel="canonical" href="https://YOUR-DOMAIN/">
@@ -580,6 +615,7 @@ html{font-size:15px;}
       <div class="role-line" id="roleLine"><span id="typed"></span><span class="caret"></span></div>
       <p class="hero-sub">A PHP &amp; Laravel Full Stack Developer from Navi Mumbai. Currently building and integrating a Laravel CRM, a CodeIgniter auction platform, and an HRMS — syncing data across systems via APIs and shipping reporting tools teams actually use.</p>
       <div class="hero-ctas">
+        <a href="https://wa.me/918425908503?text=Hi%20Anuja%2C%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Me</a>
         <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-paper-plane"></i> Let's Connect</a>
       </div>
       <div class="hero-socials">
@@ -896,19 +932,55 @@ html{font-size:15px;}
   <div class="reveal sec-head">
     <div class="eyebrow">Contact</div>
     <h2 class="sec-title">Let's build something</h2>
-    <p class="sec-sub">Open to full-time roles, freelance work and internships. Reach out any time.</p>
+    <p class="sec-sub">Tell me about your project. Fill the form and it opens directly in my WhatsApp.</p>
   </div>
   <div class="reveal contact-wrap">
     <div class="contact-card glass">
+      <div class="contact-row"><div class="ic" style="color:#25D366;"><i class="fa-brands fa-whatsapp"></i></div><a href="https://wa.me/918425908503" target="_blank" rel="noopener"><b>WhatsApp</b><span>Chat with me directly</span></a></div>
       <div class="contact-row"><div class="ic"><i class="fa-solid fa-envelope"></i></div><a href="mailto:anujachavan62@gmail.com"><b>Email</b><span>anujachavan62@gmail.com</span></a></div>
-      <div class="contact-row"><div class="ic"><i class="fa-solid fa-phone"></i></div><a href="tel:+918425908503"><b>Phone</b><span>8425908503</span></a></div>
+      <div class="contact-row"><div class="ic"><i class="fa-solid fa-phone"></i></div><a href="tel:+918425908503"><b>Phone</b><span>+91 84259 08503</span></a></div>
       <div class="contact-row"><div class="ic"><i class="fa-brands fa-linkedin-in"></i></div><a href="https://www.linkedin.com/in/anuja-chavan27/" target="_blank" rel="noopener"><b>LinkedIn</b><span>anuja-chavan27</span></a></div>
       <div class="contact-row"><div class="ic"><i class="fa-brands fa-github"></i></div><a href="https://github.com/anuja2793" target="_blank" rel="noopener"><b>GitHub</b><span>anuja2793</span></a></div>
       <div class="contact-row"><div class="ic"><i class="fa-solid fa-location-dot"></i></div><span><b>Location</b><span>Vashi, Navi Mumbai, India</span></span></div>
     </div>
-    <div class="map-frame">
-      <iframe src="https://maps.google.com/maps?q=Vashi%2C%20Navi%20Mumbai&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Map showing Navi Mumbai location" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <div class="contact-card glass form-card">
+      <h3>Project enquiry</h3>
+      <p class="fsub">Share a few details. Your message will open in WhatsApp, ready to send.</p>
+      <form id="waForm" novalidate>
+        <div class="f-row">
+          <div class="f-group"><label for="fName">Your name *</label><input id="fName" name="name" type="text" autocomplete="name" placeholder="Rahul Sharma"><span class="f-err">Please enter your name</span></div>
+          <div class="f-group"><label for="fPhone">Phone / WhatsApp</label><input id="fPhone" name="phone" type="tel" autocomplete="tel" placeholder="+91 98XXXXXXXX"></div>
+        </div>
+        <div class="f-group"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com"><span class="f-err">Please enter a valid email</span></div>
+        <div class="f-row">
+          <div class="f-group"><label for="fService">What do you need?</label>
+            <select id="fService" name="service">
+              <option>Business Website</option>
+              <option>Custom Laravel Web App</option>
+              <option>CRM / Admin Dashboard</option>
+              <option>API Integration</option>
+              <option>Bug Fix / Maintenance</option>
+              <option>Other</option>
+            </select></div>
+          <div class="f-group"><label for="fBudget">Budget</label>
+            <select id="fBudget" name="budget">
+              <option>Not sure yet</option>
+              <option>Under ₹10,000</option>
+              <option>₹10,000 – ₹25,000</option>
+              <option>₹25,000 – ₹50,000</option>
+              <option>₹50,000+</option>
+            </select></div>
+        </div>
+        <div class="f-group"><label for="fMsg">Project details *</label><textarea id="fMsg" name="message" placeholder="Describe your project, timeline, features..."></textarea><span class="f-err">Please describe your project</span></div>
+        <button type="submit" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Send on WhatsApp</button>
+        <p class="form-note" id="formNote">WhatsApp will open with your message pre-filled. Just tap Send.</p>
+      </form>
     </div>
+  </div>
+
+  <div class="reveal map-frame" style="margin-top:30px;height:320px;">
+    <iframe src="https://maps.google.com/maps?q=Vashi%2C%20Navi%20Mumbai&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" title="Map showing Navi Mumbai location" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
 
@@ -921,10 +993,14 @@ html{font-size:15px;}
     <a href="https://www.linkedin.com/in/anuja-chavan27/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
     <a href="https://www.instagram.com/anuja_2793/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
     <a href="https://www.facebook.com/profile.php?id=61569868897689" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/918425908503" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
     <a href="mailto:anujachavan62@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
   </div>
   <div class="copy">© <span id="year"></span> <span>Anuja Chavan</span>. Built with care.</div>
 </footer>
+
+<!-- Floating WhatsApp button -->
+<a id="waFloat" href="https://wa.me/918425908503?text=Hi%20Anuja%2C%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
 <button type="button" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
@@ -1341,6 +1417,53 @@ window.addEventListener('load', () => {
   let guard = 0;
   while (m.scrollWidth < window.innerWidth * 2 && guard++ < 20) { m.insertAdjacentHTML('beforeend', unit + unit); }
 });
+</script>
+
+<!-- ==========================================================================
+     NEW: Contact form → opens WhatsApp with pre-filled message
+     ========================================================================== -->
+<script>
+(function(){
+  const WA_NUMBER = '918425908503';   // country code + number, no + or spaces
+  const form = document.getElementById('waForm');
+  if(!form) return;
+  const note = document.getElementById('formNote');
+  const group = id => document.getElementById(id).closest('.f-group');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const name = v('fName'), phone = v('fPhone'), email = v('fEmail'),
+          service = v('fService'), budget = v('fBudget'), msg = v('fMsg');
+
+    const emailOk = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    group('fName').classList.toggle('err', !name);
+    group('fEmail').classList.toggle('err', !emailOk);
+    group('fMsg').classList.toggle('err', !msg);
+    if(!name || !emailOk || !msg) return;
+
+    const text =
+`Hello Anuja! 👋
+I found your portfolio and have a project enquiry.
+
+*Name:* ${name}
+*Phone:* ${phone || '-'}
+*Email:* ${email || '-'}
+*Service:* ${service}
+*Budget:* ${budget}
+
+*Project details:*
+${msg}`;
+
+    const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+
+    note.textContent = '✅ WhatsApp opened. Please tap Send to deliver your message.';
+    form.reset();
+  });
+})();
 </script>
 </body>
 </html>
